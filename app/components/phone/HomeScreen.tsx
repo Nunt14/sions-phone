@@ -4,7 +4,7 @@ import HomeIndicator from './HomeIndicator';
 import AppTile from './AppTile';
 import CalendarWidget from './CalendarWidget';
 import { getApp } from '../../apps/registry';
-import { DOCK_ITEMS, HOME_ITEMS } from '../../lib/layout';
+import { DOCK_ITEMS, HOME_ITEMS } from '../../lib/phoneLayout';
 import { HOME_WALLPAPER } from '../../lib/config';
 import type { AppDefinition, Origin } from '../../lib/types';
 

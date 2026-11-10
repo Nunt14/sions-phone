@@ -23,6 +23,7 @@ export interface Chat {
   members?: Member[]; // เฉพาะกลุ่ม: สมาชิก "คนอื่น" (ไม่รวมเรา) จำนวนสมาชิก = members.length + 1
   banner?: boolean; // true = เปิดห้องแชทแล้วมีแบนเนอร์แจ้งเตือนเลื่อนลงมาด้านบน
   items: ChatItem[];
+  callable?: boolean; // true = กดไอคอนโทรแล้วขึ้นหน้าโทร
 }
 
 export const lastText = (c: Chat) => {
@@ -64,7 +65,7 @@ export const INITIAL_CHATS: Chat[] = [
     time: '14:20',
     unread: 1,
     kind: 'friend',
-    banner: true,
+    callable: true,
     items: [
       d('Monday'),
       m('them', 'จูน วันนี้วีคุยกับทางโรงแรมแล้วนะคะ', '19:20'),
@@ -196,6 +197,25 @@ export const INITIAL_CHATS: Chat[] = [
       m('them', 'อ้าว พี่แพท', '12:12', false, 'm'),
       m('them', '555555555 อะไรคะหนิ', '12:13', false, 'sunny'),
       m('me', 'กุจะบ้า', '12:15', true),
+      m('me', 'แต่ไม่ซีเรียสเลยน้าพี่แพท แค่มาให้จูนก็ดีใจแล้ว', '12:15', true),
+      m('them', 'จริงค่ะ', '12:16', false, 'v.weerawan'),
+      m('them', 'เจ๊กุตื่นเต้นมากอะ', '12:16', false, 'sunny'),
+      m('them', 'อยากกรี๊ดดังๆ อีกแล้ว', '12:16', false, 'sunny'),
+      m('them', '5555555แอบอยากใส่ชุดเจ้าสาวบ้างจาง', '12:16', false, 'nina'),
+      m('them', '...', '12:16', false, 'jayj'),
+      m('them', 'เกิดอะไรขึ้น มีแต่คนอยากแต่งงาน', '12:16', false, 'jayj'),
+      m('me', 'รอไร เมื่อไหร่ขอ', '12:17', true),
+      m('them', 'ไม่บอกหรอก อิอิ', '12:17', false, 'jayj'),
+      m('them', 'i จะแกล้งไม่เห็นนะ', '12:17', false, 'nina'),
+      m('them', 'อุ้ยๆๆๆ', '12:17', false, 'm'),
+      m('them', 'เกินหน้าเกินตานะคะคู่นี้', '12:17', false, 'm'),
+      m('them', 'เอาบ้างไหมเรา', '12:17', false, 'pat'),
+      m('them', 'งอนค่ะ', '12:17', false, 'm'),
+      m('them', '...', '12:17', false, 'pat'),
+      m('me', 'อย่าให้มันมากนะไอมีน', '12:17', true),
+      m('them', 'สู้ๆ ค่ะพี่แพท', '12:17', false, 'v.weerawan'),
+      m('them', 'ทุกคนช่วยพี่ด้วย 😭😭😭', '12:17', false, 'pat'),
+
     ],
   },
 

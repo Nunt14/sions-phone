@@ -3,13 +3,14 @@ import { Fragment, useEffect, useRef, useState, type CSSProperties, type FormEve
 import StatusBar from '../../components/phone/StatusBar';
 import { useRealTime } from '../../hooks/useRealTime';
 import Banner from './Banner';
+import CallScreen from './CallScreen';
 import { lastText, type Chat } from './data';
 import { Avatar, BackIcon, L, MenuIcon, PhoneIcon, PlusIcon, SearchIcon, SendIcon } from './ui';
 
 const tail = (side: 'left' | 'right', color: string): CSSProperties => ({
   position: 'absolute',
-  top: 8,
-  [side]: -6,
+  top: 9,
+  [side]: -3,
   width: 0,
   height: 0,
   borderTop: '6px solid transparent',
@@ -23,6 +24,7 @@ const meta: CSSProperties = { fontSize: 10, lineHeight: 1.25, color: L.meta, fle
 export default function ChatRoom({ chat, onBack, onSend }: { chat: Chat; onBack: () => void; onSend: (text: string) => void }) {
   const { time } = useRealTime();
   const [draft, setDraft] = useState('');
+  const [calling, setCalling] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -49,7 +51,9 @@ export default function ChatRoom({ chat, onBack, onSend }: { chat: Chat; onBack:
           {chat.members && <span style={{ fontSize: 15, color: L.meta }}>{chat.members.length + 1}</span>}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
-          <SearchIcon size={21} /><PhoneIcon /><MenuIcon />
+          <SearchIcon size={21} />
+<button type="button" aria-label="โทร" onClick={() => chat.callable && setCalling(true)} style={{ display: 'flex' }}><PhoneIcon /></button>
+<MenuIcon />
         </div>
       </div>
 
@@ -115,6 +119,7 @@ export default function ChatRoom({ chat, onBack, onSend }: { chat: Chat; onBack:
       <div style={{ position: 'absolute', bottom: 8, left: '50%', transform: 'translateX(-50%)', width: 130, height: 5, borderRadius: 3, background: 'rgba(0,0,0,0.8)' }} />
 
       {chat.banner && <Banner chat={chat} text={lastText(chat)} />}
+      {calling && <CallScreen name={chat.name} onEnd={() => setCalling(false)} />}
     </div>
   );
 }
